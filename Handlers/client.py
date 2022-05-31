@@ -15,16 +15,16 @@ async def command_start(message: types.message):
 
 @dp.message_handler(commands=['help'])
 async def actual_weather(message: types.Message):
-    await message.answer('Бот умеет следующие команды:\n/Новости /Конвертер /Валюта /Ценные бумаги /Криптовалюта '
-                         '/Металлы')
+    await message.answer('Бот умеет следующие команды:\n/News - Новости\n/Converter - Конвертер\n/Currency - Валюта \
+        \n/Securities - Ценные бумаги\n/Cryptocurrency - Криптовалюта\n/Precious_metals - Драгметаллы')
 
 
-@dp.message_handler(commands=['Новости'])
+@dp.message_handler(commands=['News'])
 async def actual_news(message: types.Message):
     await message.answer('Хорошие новости - новостей нет!')
 
 
-@dp.message_handler(commands=['Конвертер'])
+@dp.message_handler(commands=['Converter'])
 async def actual_news(message: types.Message):
     await message.answer('Введите исходную валюту, валюту в которую нужно конвертировать и сумму конвертации через '
                          'запятую(Пример: USD, RUB, 1000)')
@@ -40,7 +40,7 @@ async def actual_news(message: types.Message):
         await message.answer(f'{count} {val1} -> {cur / cur2 * count} {val2}', val1, val2, count)
 
 
-@dp.message_handler(commands=['Валюта'])
+@dp.message_handler(commands=['Currency'])
 async def actual_news(message: types.Message):
     data = requests.get('https://www.cbr-xml-daily.ru/daily_json.js').json()
     usd = data['Valute']['USD']['Value']
@@ -48,17 +48,17 @@ async def actual_news(message: types.Message):
     await message.answer(f'USD = {usd}₽\nEUR = {eur}₽')
 
 
-@dp.message_handler(commands=['Ценные бумаги'])
+@dp.message_handler(commands=['Securities'])
 async def actual_news(message: types.Message):
     await message.answer('Хорошие новости - новостей нет!')
 
 
-@dp.message_handler(commands=['Криптовалюта'])
+@dp.message_handler(commands=['Cryptocurrency'])
 async def actual_news(message: types.Message):
     await message.answer('Хорошие новости - новостей нет!')
 
 
-@dp.message_handler(commands=['Металлы'])
+@dp.message_handler(commands=['Precious_metals'])
 async def actual_news(message: types.Message):
     await message.answer('Хорошие новости - новостей нет!')
 
@@ -66,9 +66,9 @@ async def actual_news(message: types.Message):
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(command_start, commands=['start'])
     dp.register_message_handler(command_start, commands=['help'])
-    dp.register_message_handler(command_start, commands=['Новости'])
-    dp.register_message_handler(command_start, commands=['Конвертер'])
-    dp.register_message_handler(command_start, commands=['Валюта'])
-    dp.register_message_handler(command_start, commands=['Ценные бумаги'])
-    dp.register_message_handler(command_start, commands=['Криптовалюта'])
-    dp.register_message_handler(command_start, commands=['Металлы'])
+    dp.register_message_handler(command_start, commands=['News'])
+    dp.register_message_handler(command_start, commands=['Converter'])
+    dp.register_message_handler(command_start, commands=['Currency'])
+    dp.register_message_handler(command_start, commands=['Securities'])
+    dp.register_message_handler(command_start, commands=['Cryptocurrency'])
+    dp.register_message_handler(command_start, commands=['Precious metals'])
